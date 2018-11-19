@@ -31,6 +31,9 @@ Basic authentication is not enabled by default on a Windows host but can be enab
 Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value $true
 
 
+ansible_winrm_server_cert_validation: Specify the server certificate validation mode (ignore or validate). Ansible defaults to validate on Python 2.7.9 and higher, which will result in certificate validation errors against the Windows self-signed certificates. Unless verifiable certificates have been configured on the WinRM listeners, this should be set to ignore
+
+--
 
 Non-Administrator Accounts
 WinRM is configured by default to only allow connections from accounts in the local Administrators group. This can be changed by running:
@@ -39,3 +42,5 @@ winrm configSDDL default
 This will display an ACL editor, where new users or groups may be added. To run commands over WinRM, users and groups must have at least the Read and Execute permissions enabled.
 
 While non-administrative accounts can be used with WinRM, most typical server administration tasks require some level of administrative access, so the utility is usually limited.
+
+--
